@@ -1,0 +1,61 @@
+<div class="center jumbotron">
+<%= form_for(@feedback) do |form| %>
+  <% if @feedback.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@feedback.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @feedback.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :feedback_type %>
+    <%= form.radio_button :feedback_type, "suggesstions" %>
+    <%= form.label :feedback_type, "Suggesstions" %>
+    <%= form.radio_button :feedback_type, "complaints" %>
+    <%= form.label :feedback_type, "Complaints" %>
+    <%= form.radio_button :feedback_type, "inquiry" %>
+    <%= form.label :feedback_type, "Inquiry" %>
+    <%= form.radio_button :feedback_type, "compliments" %>
+    <%= form.label :feedback_type, "Compliments" %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :feedback_subject %>
+    <%= form.select :feedback_subject, 
+     options_for_select([['Bus_service'],['Website'],['schedule']]) %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :feedback_email %>
+    <%= form.text_field :feedback_email, id: :feedback_feedback_email %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :feedback_mno %>
+    <%= form.text_field :feedback_mno, id: :feedback_feedback_mno %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :feedback_comment %>
+    <%= form.text_area :feedback_comment, id: :feedback_feedback_comment %>
+  </div>
+  </div>
+
+   <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

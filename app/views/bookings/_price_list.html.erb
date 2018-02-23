@@ -1,0 +1,6 @@
+<% st =  defined?(package) ? package : Package.find(1) %>
+<%= label_tag :Price %><br />
+<%= text_field_tag '[booking][book_price]', st.pkg_price%>
+
+<%#= book_amount=book_price*book_ticket_num Package.select(:pkg_price).to_a%>
+<%#= Package.where(@package_id).pluck(:pkg_price) ,%>

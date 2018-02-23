@@ -1,0 +1,41 @@
+<div class="center jumbotron">
+<%= form_for(@city) do |f| %>
+  <% if @city.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@city.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @city.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="row">
+  <div class="form-group">
+  <%= f.label :state_name %>
+  <% state_arr=State.all.map{|i| [i.name]} %>
+  <%= f.collection_select :state_id, State.order(:id), :id,:name %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= f.label :city_name %>
+    <%= f.text_field :city_name, id: :city_city_name %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= f.label :city_place %>
+    <%= f.text_field :city_place, id: :city_city_place %>
+  </div>
+  </div>
+
+
+<div class="actions">
+    <%= f.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

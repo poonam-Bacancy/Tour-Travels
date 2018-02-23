@@ -1,0 +1,26 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pkg title:</strong>
+  <%= @package.pkg_title %>
+</p>
+
+<p>
+  <strong>Pkg days:</strong>
+  <%= @package.pkg_days %>
+</p>
+
+<p>
+  <strong>Pkg desc:</strong>
+  <%= @package.pkg_desc %>
+</p>
+
+<p>
+  <strong>Pkg price:</strong>
+  <%= @package.pkg_price %>
+</p>
+
+<%= link_to 'Edit', edit_package_path(@package), class: "btn btn-warning" %> 
+<%= link_to 'Back', packages_path , class: "btn btn-default" %>
+</div>

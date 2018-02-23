@@ -1,0 +1,49 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<h1>Cities</h1>
+<div class="city-block">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-2">State name</th>
+      <th class="col-md-2">City name</th>
+      <th class="col-md-2">City place</th>
+      <% if user_signed_in? %>
+          <% if current_user.has_role? :superadmin %>
+
+      <th colspan="3"></th>
+      <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cities.each do |city| %>
+      <tr>
+        <td class="col-md-2"><%= city.state.name %></td>
+        <td class="col-md-2"><%= city.city_name %></td>
+        <td class="col-md-2"><%= city.city_place %></td>
+        
+        <% if user_signed_in? %>
+          <% if current_user.has_role? :superadmin %>
+            <td class="col-md-4">
+            <%= link_to 'Show', city , class: "btn btn-info" %>
+            <%= link_to 'Edit', edit_city_path(city),class: "btn  btn-warning" %>
+            <%= link_to 'Destroy', city, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+          <% end %>
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+<% if current_user.has_role? :superadmin %>
+
+<%= link_to 'New City', new_city_path , class: "btn btn-info"%>
+
+<% end %>
+<% end %>
+</div>

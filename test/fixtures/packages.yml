@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pkg_title: MyText
+  pkg_days: MyString
+  pkg_desc: MyText
+  pkg_price: 1.5
+
+two:
+  pkg_title: MyText
+  pkg_days: MyString
+  pkg_desc: MyText
+  pkg_price: 1.5

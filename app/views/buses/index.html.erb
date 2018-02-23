@@ -1,0 +1,50 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<h1>Buses</h1>
+<div class="city-block">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-2">Bus no</th>
+      <th class="col-md-2">Bus total seat</th>
+      <th class="col-md-2">Bus type</th>
+      <th class="col-md-2">Bus image</th>
+      <% if user_signed_in? %>
+      <% if current_user.has_role? :superadmin %>
+      <th colspan="3"></th>
+      <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @buses.each do |bus| %>
+      <tr>
+        <td class="col-md-2"><%= bus.bus_no %></td>
+        <td class="col-md-2"><%= bus.bus_total_seat %></td>
+        <td class="col-md-2"><%= bus.bus_type %></td>
+        <td class="col-md-2">
+        <%= image_tag(bus.bus_image.url(:small_thumb), alt: 'Image') if bus.bus_image? %>
+        </td>
+      <% if user_signed_in? %>
+      <% if current_user.has_role? :superadmin %>
+  
+      <td class="col-md-4">
+      <%= link_to 'Show', bus , class: "btn btn-info" %>
+      <%= link_to 'Edit', edit_bus_path(bus) ,class: "btn  btn-warning" %>
+      <%= link_to 'Destroy', bus, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
+      <% end %>
+      <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% if user_signed_in? %>
+<% if current_user.has_role? :superadmin %>
+<%= link_to 'New Bus', new_bus_path , class: "btn btn-info" %>
+<% end %>
+<% end %>
+</div>

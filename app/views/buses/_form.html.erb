@@ -1,0 +1,46 @@
+<div class="center jumbotron">
+<%= form_for(@bus) do |form| %>
+  <% if @bus.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bus.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @bus.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bus_no %>
+    <%= form.text_field :bus_no, id: :bus_bus_no %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bus_total_seat %>
+    <%= form.number_field :bus_total_seat, id: :bus_bus_total_seat %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bus_type %>
+    <%= form.text_field :bus_type, id: :bus_bus_type %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bus_image %>
+    <center><%= form.file_field :bus_image, id: :bus_bus_image %></center>
+  </div>
+  </div>
+
+ <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

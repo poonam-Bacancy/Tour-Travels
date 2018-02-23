@@ -1,0 +1,70 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<h1>Bookings</h1>
+<div class="city-block">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-2">Book uname</th>
+      <th class="col-md-2">Book name</th>
+      <th class="col-md-2">Book date</th>
+      <th class="col-md-2">Tour name</th>
+      <th class="col-md-2">Book price</th>
+      <th class="col-md-2">number of tickets</th>
+      <th class="col-md-2">Book amount</th>
+      <th class="col-md-2"> Booking Status</th>
+      <% if user_signed_in? %>
+      <% if current_user.has_role? :superadmin %>
+        <th class="col-md-2">Tax </th>
+        <th class="col-md-2">Other charges</th>
+        <th class="col-md-2">Total amount </th>
+      <% end %>
+      <% end %>
+      <th class="col-md-2">Payment Status</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td class="col-md-2"><%= booking.user.uname %></td>
+        <td class="col-md-2"><%= booking.book_name %></td>
+        <td class="col-md-2"><%= booking.book_date %></td>
+        <td class="col-md-2"><%= booking.package.pkg_title %></td>
+        <td class="col-md-2"><%= booking.book_price %></td>
+        <td class="col-md-2"><%= booking.book_ticket_num %></td>
+        <td class="col-md-2"><%= booking.book_amount %></td>
+        <% if user_signed_in? %>
+        <% if current_user.has_role? :superadmin %>
+        <% if booking.status == "pending"%>
+
+        <td class="col-md-2"><%= link_to "pending",  change_status_booking_path(booking) %></td>
+        <%elsif booking.status == "confirmed"%>
+        <td>confirmed</td>
+        <td class="col-md-2"><%= booking.tax %></td>
+        <td class="col-md-2"><%= booking.other %></td>
+        <td class="col-md-2"><%= booking.total_amount %></td>
+        <td class="col-md-2"><%= booking.payment_status %></td>
+        <% end %>
+        <% end %>
+        <% end %>
+        <% if user_signed_in? %>
+        <% if current_user.has_role? :visitor %>
+        <td class="col-md-2"><%= booking.status %></td>
+        <% if booking.status == "pending"%>
+        <td><%= link_to 'Cancel Booking', booking, method: :delete, data: { confirm: 'Are you sure?' } ,class: "btn  btn-danger" %></td>
+        <% end %>
+        <% if booking.status == "confirmed" && booking.payment_status == "paid" %>
+          <td class="col-md-2"><%= booking.payment_status %></td>
+        <% else %>
+        <td><%= link_to 'Bill',booking_path(booking),class: "btn btn-info" %></td>
+        <% end %>
+        <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+</div>

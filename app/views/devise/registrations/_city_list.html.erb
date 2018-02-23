@@ -1,0 +1,3 @@
+<% st =  defined?(state) ? state : :an %>
+<%= label_tag :city %><br />
+<%= select_tag "user[city]", options_for_select(CS.cities(st, :in)), id: 'user_city' %>

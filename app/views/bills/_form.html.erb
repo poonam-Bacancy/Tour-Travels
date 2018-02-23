@@ -1,0 +1,71 @@
+  <div class="center jumbotron">
+<%= form_for(@bill) do |form| %>
+  <% if @bill.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@bill.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @bill.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bill_name %>
+    <%= form.text_field :bill_name, id: :bill_bill_name %>
+    <%#= form.text_field :package_id, Package.order(:id), :id,:pkg_title %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :tour_name %>
+    <%= form.text_field :tour_name, id: :bill_tour_name %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bill_amount %>
+    <%= form.text_field :bill_amount, id: :bill_bill_amount %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :tax %>
+    <%= form.text_field :tax, id: :bill_tax %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :other_charges %>
+    <%= form.text_field :other, id: :bill_other %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :bill_total %>
+    <%= form.text_field :bill_total, id: :bill_bill_total %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :payment %>
+    <%= form.radio_button :payment, "credit card" %>
+    <%= form.label :payment, "credit card" %>
+    <%= form.radio_button :payment, "debit card" %>
+    <%= form.label :payment, "debit card" %>
+  </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

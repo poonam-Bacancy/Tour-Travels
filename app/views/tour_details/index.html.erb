@@ -1,0 +1,38 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<h1>Tour Details</h1>
+<div class="city-block">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-2">Tour title</th>
+      <th class="col-md-2">From date</th>
+      <th class="col-md-2">To date</th>
+      <th class="col-md-2">Tour driver</th>
+      <th class="col-md-2">Tour bus</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tour_details.each do |tour_detail| %>
+      <tr>
+        <td class="col-md-2"><%= tour_detail.package.pkg_title %></td>
+        <td class="col-md-2"><%= tour_detail.from_date %></td>
+        <td class="col-md-2"><%= tour_detail.to_date %></td>
+        <td class="col-md-2"><%= tour_detail.driver.driver_name %></td>
+        <td class="col-md-2"><%= tour_detail.bus.bus_no %></td>
+        <td class="col-md-4">
+        <%= link_to 'Show', tour_detail , class: "btn btn-info"%>
+        <%= link_to 'Edit', edit_tour_detail_path(tour_detail),class: "btn  btn-warning" %>
+        <%= link_to 'Destroy', tour_detail, method: :delete, data: { confirm: 'Are you sure?' },class: "btn  btn-danger" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Tour Detail', new_tour_detail_path , class: "btn btn-info" %>
+</div>

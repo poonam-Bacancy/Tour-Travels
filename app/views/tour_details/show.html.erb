@@ -1,0 +1,31 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Tour title:</strong>
+  <%= @tour_detail.package.pkg_title %>
+</p>
+
+<p>
+  <strong>From date:</strong>
+  <%= @tour_detail.from_date %>
+</p>
+
+<p>
+  <strong>To date:</strong>
+  <%= @tour_detail.to_date %>
+</p>
+
+<p>
+  <strong>Tour driver:</strong>
+  <%= @tour_detail.driver.driver_name %>
+</p>
+
+<p>
+  <strong>Tour bus:</strong>
+  <%= @tour_detail.bus.bus_no %>
+</p>
+
+<%= link_to 'Edit', edit_tour_detail_path(@tour_detail),class: "btn btn-warning" %>
+<%= link_to 'Back', tour_details_path , class: "btn btn-default"%>
+</div>

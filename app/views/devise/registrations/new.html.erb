@@ -1,0 +1,99 @@
+<div class="center jumbotron">
+<header><h1>Sign up</h1></header><br/>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :gender %>
+    <%= f.radio_button :gender, "male" %>
+    <%= f.label :gender, "Male" %>
+    <%= f.radio_button :gender, "female" %>
+    <%= f.label :gender, "Female" %>
+    <%#= f.text_field :gender, autofocus: true, class: "form-control" %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :state %><br />
+    <%= f.select :state, CS.states(:in) %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="form-group" id='city-list' remote: true>
+    <%= render partial: 'city_list'%>
+    <%#= f.text_field :city %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :username %><br />
+    <%= f.text_field :uname %>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="form-group">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "off" %>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+  </div>
+</div>
+  <div class="actions">
+    <%= f.submit "Sign up", class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#user_state").on("change", function(){
+      $.ajax({
+        url: '/change_city',
+        method: 'GET',
+        data: {
+          state: $(this).val()
+        }
+      });
+    });
+  });
+
+</script>

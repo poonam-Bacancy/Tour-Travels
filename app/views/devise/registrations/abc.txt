@@ -1,0 +1,36 @@
+#before_save { self.email = email.downcase } #convert into lowercase before save
+	 before_save { email.downcase! }
+	 validates :name, presence: true,length: { maximum: 50 }
+	 validates :address, presence: true,length: { maximum: 200 }
+	 validates :gender, presence: true
+	 validates :state, presence: true,length: { maximum: 10 }
+	 validates :city, presence: true,length: { maximum: 20 }
+	 validates :uname, presence: true,length: { maximum: 10 }
+
+	 VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+	 validates :email, presence: true ,length: { maximum: 20 },
+	 			 format: { with: VALID_EMAIL_REGEX },uniqueness: { case_sensitive: false }
+	 
+	 validates :password, presence: true ,length: { maximum: 6 }
+
+	 #has_secure_password
+
+
+
+
+	 amount=price*no_of tickets
+
+ans = (charge * 10) / 100 ;
+ans1 = ans + other + charge;
+
+
+https://github.com/plataformatec/devise/wiki/how-to:-allow-users-to-edit-their-password
+
+https://stackoverflow.com/questions/19307545/send-reset-password-instructions-with-devise
+
+
+
+<% st =  defined?(amount) ? amount :Booking.book_price %>
+<%#= label_tag :Price %><br />
+<%#= book_amountamount =book_price*book_ticket_num %>
+<%= text_field_tag "booking[book_ticket_num]", st.book_ticket_num '  %>

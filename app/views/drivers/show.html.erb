@@ -1,0 +1,26 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Driver name:</strong>
+  <%= @driver.driver_name %>
+</p>
+
+<p>
+  <strong>Driver address:</strong>
+  <%= @driver.driver_address %>
+</p>
+
+<p>
+  <strong>Driver city:</strong>
+  <%= @driver.driver_city %>
+</p>
+
+<p>
+  <strong>Driver mno:</strong>
+  <%= @driver.driver_mno %>
+</p>
+
+<%= link_to 'Edit', edit_driver_path(@driver) , class: "btn btn-warning" %> 
+<%= link_to 'Back', drivers_path ,class: "btn btn-default" %>
+</div>

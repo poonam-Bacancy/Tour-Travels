@@ -1,0 +1,19 @@
+<div class="center jumbotron">
+<br/>
+<h1><center> Welcome to Gujarat Tourism </center></h1>
+<%= image_tag "7.jpg" , height: '150px', width: '650px' %><br/>
+<br/>
+<p style="color: #9900CC; ">This site is used to provide the information to all the people who love to travel & wants to explore the beauties of the nature & wants to see the manmade monuments. </p>
+<p style="color: #9900CC">This trip Planner travel planning functionality makes it easy for uses to plan holiday in a matter of minute. </p>
+<p style="color:#9900CC">This trip Planner is an online travel management system.</p>
+<p style="color:#9900CC">The main aim of this system is to bridging the gap between the people from all over the india.</p>
+<p style="color:#9900CC"> It offers a complete range of best-value services to ensure that tour runs smoothly & efficiently.</p>
+<p style="color:#9900CC">At our site you can search for a tourist place.</p>
+<p style="color:#9900CC">It is a one stop where you get information about tourist place & Tour Packages.</p>
+<p style="color:#9900CC">In this same way providing the pacakages like....1) Khushboo Gujarat ki , 2) Spectacular South Gujarat , 3) Glourios Gujarat , 4) Kutch Tour , 5) Royal Palaces of Gujarat , etc....</p>
+<p style="color:#9900CC">It provide centralized information of tourism places as well as provide strategically planning for travel.</p>
+<% if not user_signed_in? %>
+<%= link_to "Sign Up Now !!" ,new_user_registration_path, class: "btn btn-lg btn-primary"%>
+<% end %>
+</div>
+<%#= link_to image_tag("ran.jpg", alt: "Ran"),'http://www.google.com/' %>

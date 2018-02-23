@@ -1,0 +1,45 @@
+<div class="center jumbotron">
+<%= form_for(@driver) do |form| %>
+  <% if @driver.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@driver.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @driver.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :driver_name %>
+    <%= form.text_field :driver_name, id: :driver_driver_name %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :driver_address %>
+    <%= form.text_area :driver_address, id: :driver_driver_address %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :driver_city %>
+    <%= form.text_field :driver_city, id: :driver_driver_city %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :driver_mno %>
+    <%= form.text_field :driver_mno, id: :driver_driver_mno %>
+  </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>

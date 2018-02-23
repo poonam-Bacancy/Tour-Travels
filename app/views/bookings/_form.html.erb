@@ -1,0 +1,103 @@
+<div class="center jumbotron">
+  <%= form_for(@booking) do |form| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :book_uname %>
+    <%= form.text_field :book_uname, id: :booking_book_uname,:value => current_user.uname %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :book_name %>
+    <%= form.text_field :book_name, id: :booking_book_name %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :book_date %>
+    <%= form.date_field(:book_date) %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :tour_name %>
+    <%# pkg_arr = Package.all.map{|i| [i.pkg_title]} %>
+    <%= form.collection_select :package_id, Package.order(:id), :id,:pkg_title %>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="form-group" id='price-list'>
+    <%= render partial: 'price_list'%>
+    <%#= form.text_field :book_price, id: :booking_book_price %>
+  </div>
+  </div>
+
+<div class="row">
+  <div class="form-group">
+    <%= form.label :number_of_tickets %>
+    <%= form.text_field :book_ticket_num, id: :booking_book_ticket_num %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group" id='count-amount'>
+  <%= render partial: 'count_amount'%>
+    
+    </div>
+  </div>
+
+  <!-- <div class="row">
+  <div class="form-group">
+    <%= form.hidden_field :tax, value:"(book_amount )*(10)/100" %>
+  </div>
+  </div> -->
+
+
+  <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $("#booking_package_id").on("change", function(){
+      $.ajax({
+        url: '/change_price.js',
+        method: 'GET',
+        data: {
+          package: $(this).val()
+
+        }
+      });
+    });
+    
+    $("#booking_book_ticket_num").on("change", function(){
+      $.ajax({
+        url: '/change_amount.js',
+        method: 'GET',
+        data: {
+          amount: $("#booking_package_id").val(),
+          no_of_tickets: $(this).val()
+        }
+      });
+    });
+  });
+
+</script>

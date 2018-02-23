@@ -1,0 +1,42 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<h1>Drivers</h1>
+<div class="city-block">
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-2">Driver name</th>
+      <th class="col-md-2">Driver address</th>
+      <th class="col-md-2">Driver city</th>
+      <th class="col-md-2">Driver mno</th>
+      <% if user_signed_in? %>
+        <% if current_user.has_role? :superadmin %>
+          <th colspan="3"></th>
+        <% end %>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @drivers.each do |driver| %>
+      <tr>
+        <td class="col-md-2"><%= driver.driver_name %></td>
+        <td class="col-md-2"><%= driver.driver_address %></td>
+        <td class="col-md-2"><%= driver.driver_city %></td>
+        <td class="col-md-2"><%= driver.driver_mno %></td>
+        <% if user_signed_in? %>
+          <% if current_user.has_role? :superadmin %>
+        <td class="col-md-4">
+        <%= link_to 'Show', driver , class: "btn btn-info" %>
+        <%= link_to 'Edit', edit_driver_path(driver) ,class: "btn  btn-warning" %>
+        <%= link_to 'Destroy', driver, method: :delete, data: { confirm: 'Are you sure?' } , class: "btn btn-danger" %></td>
+        <% end %>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+<%= link_to 'New Driver', new_driver_path ,class: "btn btn-info" %>
+</div>

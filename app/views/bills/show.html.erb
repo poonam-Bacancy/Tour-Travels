@@ -1,0 +1,41 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bill name:</strong>
+  <%= @bill.current_user.book_name %>
+</p>
+
+<p>
+  <strong>Tour name:</strong>
+  <%= @bill.booking.tour_name %>
+</p>
+
+<p>
+  <strong>Bill amount:</strong>
+  <%= @bill.booking.book_amount %>
+</p>
+
+<p>
+  <strong>Tax:</strong>
+  <%= @bill.tax %>
+</p>
+
+<p>
+  <strong>Other:</strong>
+  <%= @bill.other %>
+</p>
+
+<p>
+  <strong>Bill total:</strong>
+  <%= @bill.bill_total %>
+</p>
+
+<p>
+  <strong>Payment:</strong>
+  <%= @bill.payment %>
+</p>
+
+<%= link_to 'Edit', edit_bill_path(@bill), class: "btn btn-warning" %>
+<%= link_to 'Back', bills_path , class: "btn btn-default"%>
+</div>

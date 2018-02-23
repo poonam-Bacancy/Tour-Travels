@@ -1,0 +1,56 @@
+<div class="center jumbotron">
+<%= form_for(@tour_detail) do |form| %>
+  <% if @tour_detail.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@tour_detail.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @tour_detail.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :tour_title %>
+    
+    <%= form.collection_select :package_id, Package.order(:id), :id,:pkg_title %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :from_date %>
+    <%= form.date_field(:from_date) %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :to_date %>
+    <%= form.date_field(:to_date) %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :tour_driver %>
+    
+    <%= form.collection_select :driver_id, Driver.order(:id), :id,:driver_name %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :tour_bus %>
+    
+    <%= form.collection_select :bus_id, Bus.order(:id), :id,:bus_no %>
+  </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>

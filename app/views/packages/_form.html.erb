@@ -1,0 +1,44 @@
+<%= form_for(@package) do |form| %>
+  <% if @package.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@package.errors.count, "error") %> prohibited this product from being saved:</h2>
+      <ul>
+      <% @package.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :package_title %>
+    <%= form.text_area :pkg_title, id: :package_pkg_title %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :package_days %>
+    <%= form.text_field :pkg_days, id: :package_pkg_days %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :package_description %>
+    <%= form.text_area :pkg_desc, id: :package_pkg_desc %>
+  </div>
+  </div>
+
+  <div class="row">
+  <div class="form-group">
+    <%= form.label :package_price %>
+    <%= form.text_field :pkg_price, id: :package_pkg_price %>
+  </div>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Create', class: "btn btn-primary" %>
+  </div>
+<% end %>

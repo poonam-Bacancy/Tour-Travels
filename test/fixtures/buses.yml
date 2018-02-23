@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_no: MyString
+  bus_total_seat: 1
+  bus_type: MyString
+  bus_image: MyString
+
+two:
+  bus_no: MyString
+  bus_total_seat: 1
+  bus_type: MyString
+  bus_image: MyString

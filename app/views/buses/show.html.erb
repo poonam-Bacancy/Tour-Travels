@@ -1,0 +1,28 @@
+<div class="center jumbotron">
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Bus no:</strong>
+  <%= @bus.bus_no %>
+</p>
+
+<p>
+  <strong>Bus total seat:</strong>
+  <%= @bus.bus_total_seat %>
+</p>
+
+<p>
+  <strong>Bus type:</strong>
+  <%= @bus.bus_type %>
+</p>
+
+<p>
+  <strong>Bus image:</strong>
+  <%= image_tag(@bus.bus_image.url(:small_thumb), alt: 'Image') if @bus.bus_image? %>
+  <%#= @bus.bus_image %>
+</p>
+
+<%= link_to 'Edit', edit_bus_path(@bus) , class: "btn btn-warning " %> 
+<%= link_to 'Back', buses_path ,class: "btn btn-default" %>
+
+</div>
