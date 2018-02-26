@@ -13,3 +13,4 @@
 /yarn-error.log
 .byebug_history
 public/uploads
+'/config/local_env.yml'

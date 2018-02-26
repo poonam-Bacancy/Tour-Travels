@@ -15,6 +15,8 @@ class User < ApplicationRecord
    after_create :assign_default_role_to_user
 
    def assign_default_role_to_user
+    if self.has_role? ""
      add_role(:visitor)
+   end
      end
 end

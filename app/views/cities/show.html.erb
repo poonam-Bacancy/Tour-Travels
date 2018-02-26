@@ -1,22 +1,14 @@
 <div class="center jumbotron">
 <p id="notice"><%= notice %></p>
 <h2>City</h2>
-
-<p>
-  <strong>State name:</strong>
-  <%= @city.state.name %>
-</p>
-
 <p>
   <strong>City name:</strong>
   <%= @city.city_name %>
 </p>
-
 <p>
   <strong>City place:</strong>
   <%= @city.city_place %>
 </p>
-
 <%= link_to 'Edit', edit_city_path(@city) , class: "btn btn-warning"%> 
 <%= link_to 'Back', cities_path ,class: "btn btn-default"%>
 </div>

@@ -15,12 +15,24 @@ class BookingsController < ApplicationController
   end
   def change_status
     @booking=Booking.find(params[:id])
+    
     @user = User.find(@booking.user_id)     
     if @booking.status=="pending"
-      @booking.status ="confirmed"
-      @booking.save
-      BookMailer.booking_status(@user,@booking).deliver_now
-      redirect_to bookings_path
+      @p=@booking.package
+      @person=Booking.where(package_id:@p.id).count
+      #@person=61
+      @tour=TourDetail.find_by(package_id:@p.id)
+      @total=@tour.bus.bus_total_seat
+      if @person >= @total
+        @booking.status ="rejected"
+        @booking.save
+        redirect_to bookings_path
+      else  
+        @booking.status ="confirmed"
+        @booking.save
+        BookMailer.booking_status(@user,@booking).deliver_now
+        redirect_to bookings_path
+      end
     end
   end
 
@@ -57,6 +69,9 @@ class BookingsController < ApplicationController
         format.json { render json: @booking.errors, status: :unprocessable_entity }
       end
     end
+    #@package=@booking.package.find(params[:id])
+    #t=TourDetail.find_by(package_id: @package.id)
+  
   end
 
   # PATCH/PUT /bookings/1

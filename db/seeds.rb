@@ -16,6 +16,7 @@ user1 = User.create(name:'poonam',address:'commerce six road',
 								    password: '123456',
 								    password_confirmation: '123456')
 user1.add_role(:superadmin)
+
 user2 = User.create(name:'jinal',address:'naranpura',
 									state:'Gujarat',
 									gender:'female',
