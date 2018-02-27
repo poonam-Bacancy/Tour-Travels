@@ -19,11 +19,15 @@ class BookingsController < ApplicationController
     @user = User.find(@booking.user_id)     
     if @booking.status=="pending"
       @p=@booking.package
-      @person=Booking.where(package_id:@p.id).count
-      #@person=61
+      @book_seat=@booking.book_ticket_num
+      @person=Booking.where(package_id:@p.id).where(book_date:@booking.book_date).where(status: 'confirmed').pluck(:book_ticket_num).sum 
+
       @tour=TourDetail.find_by(package_id:@p.id)
       @total=@tour.bus.bus_total_seat
-      if @person >= @total
+
+      # @booking.book_ticket_num
+
+      if @person + @booking.book_ticket_num > @total
         @booking.status ="rejected"
         @booking.save
         redirect_to bookings_path
